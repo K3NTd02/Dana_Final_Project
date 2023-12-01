@@ -29,7 +29,7 @@ function onEachFeature(feature, layer) {
     if (feature.properties) {
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
-            popupContent += "<p>" + property + ": " + feature.properties[property] + "</p>";
+            popupContent += "<p><b>City:</b> " + feature.properties.City + "</p>" + "<p><b>Total Megawatts Produced:</b> " + feature.properties.Total_MW + "</p>";
         }
         layer.bindPopup(popupContent);
     };
