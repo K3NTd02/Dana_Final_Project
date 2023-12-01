@@ -55,7 +55,7 @@ function createSymbols(data, map){
 
 function getData(){
     //load the data
-    fetch("data/Power_Plants.geojson")
+    fetch("/Dana_Final_Project/data/Power_Plants.geojson")
         .then(function(response){
             return response.json();
         })
