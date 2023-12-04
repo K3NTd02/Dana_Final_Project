@@ -44,6 +44,15 @@ function pointToLayer(feature, latlng){
             opacity: 1,
             fillOpacity: 0.8
         };
+    } else if (feature.properties.PrimSource == "biomass") {
+        options = {
+            radius: 8,
+            fillColor: "7cfc00",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
     } else if (feature.properties.PrimSource == "wind") {
         options = {
             radius: 8,
@@ -100,7 +109,7 @@ function onEachFeature(feature, layer) {
 //function to retrieve the data and place it on the map
 function getData(){
     //load the data
-    fetch("/data/Power_Plants.geojson")
+    fetch("/Dana_Final_Project/data/Power_Plants.geojson")
         .then(function(response){
             return response.json();
         })
