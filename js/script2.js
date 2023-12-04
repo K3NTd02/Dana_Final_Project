@@ -26,14 +26,10 @@ function createMap(){
 function onEachFeature(feature, layer) {
     //no property named popupContent; instead, create html string with all properties
     var popupContent = "";
-    if (feature.properties) {
-        //loop to add feature property names and values to html string
-        for (var property in feature.properties){
-            popupContent += "<p><b>City:</b> " + feature.properties.City + "</p>" + "<p><b>Total Megawatts Produced:</b> " + feature.properties.Total_MW + "</p>";
-        }
+        popupContent += "<p><b>City:</b> " + feature.properties.City + "</p>";
+        popupContent += "<p><b>Total Megawatts Produced:</b> " + feature.properties.Total_MW + "</p>";
         layer.bindPopup(popupContent);
     };
-};
 
 //function to retrieve the data and place it on the map
 function getData(){
