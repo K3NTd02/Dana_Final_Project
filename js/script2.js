@@ -28,7 +28,7 @@ function onEachFeature(feature, layer) {
     var popupContent = "";
     popupContent += "<p><b>Plant Name:</b> " + feature.properties.Plant_Name + "</p>";
     popupContent += "<p><b>City:</b> " + feature.properties.City + "</p>";
-    popupContent += "<p><b>Total Megawatts Produced:</b> " + feature.properties.Total_MW + "</p>";
+    popupContent += "<p><b>Total Megawatts Produced:</b> " + feature.properties.Total_MW + " MW</p>";
     popupContent += "<p><b>Main Energy Source:</b> " + feature.properties.PrimSource + "</p>";
     layer.bindPopup(popupContent);
 };
