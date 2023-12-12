@@ -7,8 +7,6 @@ function createMap(){
     map = L.map('map', {
         center: [45,-120],
         zoom: 6
-
-    
     });
     
     //add OSM base tilelayer
@@ -25,6 +23,7 @@ function createMap(){
 function pointToLayer(feature, latlng){
     //create marker options
     var options = {
+        radius: 8,
         fillColor: "#ff7800",
         color: "#000",
         weight: 1,
@@ -36,9 +35,12 @@ function pointToLayer(feature, latlng){
     var layer = L.circleMarker(latlng, options);
 
     //build popup content string
-    var popupContent = "<p>" + property + ": " + feature.properties[property] + "</p>";
-
-    //bind the popup to the circle marker
+    var popupContent = "";
+    popupContent += "<p><b>Plant Name:</b> " + feature.properties.Plant_Name + "</p>";
+    popupContent += "<p><b>City:</b> " + feature.properties.City + "</p>";
+    popupContent += "<p><b>Total Megawatts Produced:</b> " + feature.properties.Total_MW + " MW</p>";
+    popupContent += "<p><b>Main Energy Source:</b> " + feature.properties.PrimSource + "</p>";
+    
     layer.bindPopup(popupContent);
 
     //return the circle marker to the L.geoJson pointToLayer option
@@ -46,22 +48,24 @@ function pointToLayer(feature, latlng){
 };
 
 //Add circle markers for point features to the map
-function createSymbols(data, map){
+function createSymbols(data){
     //create a Leaflet GeoJSON layer and add it to the map
     L.geoJson(data, {
-        pointToLayer: pointToLayer
+        pointToLayer: function (feature, latlng) {
+            // Pass minValue to pointToLayer function
+            return pointToLayer(feature, latlng);
+        }
     }).addTo(map);
 };
 
 function getData(){
     //load the data
-    fetch("/Dana_Final_Project/data/Power_Plants.geojson")
+    fetch("/data/Power_Plants.geojson")
         .then(function(response){
             return response.json();
         })
         .then(function(json){
             createSymbols(json);
-            
         });
 };
 
