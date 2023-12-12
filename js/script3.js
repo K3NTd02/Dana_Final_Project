@@ -38,11 +38,11 @@ function classify(primSource) {
       };
     } else if (primSource == "hydroelectric") {
       options = {
-        fillColor: "#0504aa",
+        fillColor: "#00ffff",
       };
     } else if (primSource == "biomass") {
       options = {
-        fillColor: "ffff00",
+        fillColor: "ffd800",
       };
     } else if (primSource == "wind") {
       options = {
@@ -87,15 +87,23 @@ function pointToLayer(feature, latlng){
 };
 
 //Add circle markers for point features to the map
-function createSymbols(data){
-    //create a Leaflet GeoJSON layer and add it to the map
-    L.geoJson(data, {
+function createSymbols(data) {
+    // Filter features with Total_MW values over 10
+    var filteredData = data.features.filter(function (feature) {
+        return feature.properties.Total_MW > 20;
+    });
+
+    // Create a Leaflet GeoJSON layer with filtered data and add it to the map
+    L.geoJson({
+        type: "FeatureCollection",
+        features: filteredData
+    }, {
         pointToLayer: function (feature, latlng) {
-            // Pass minValue to pointToLayer function
             return pointToLayer(feature, latlng);
         }
     }).addTo(map2);
-};
+}
+
 
 function getData(){
     //load the data

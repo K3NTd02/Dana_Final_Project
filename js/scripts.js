@@ -44,7 +44,7 @@ function classify(primSource) {
       };
     } else if (primSource == "biomass") {
       options = {
-        fillColor: "954535",
+        fillColor: "254117",
       };
     } else if (primSource == "wind") {
       options = {
