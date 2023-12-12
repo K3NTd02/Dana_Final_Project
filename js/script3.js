@@ -1,10 +1,8 @@
-/* Map of GeoJSON data from MegaCities.geojson */
-//declare map var in global scope
-var map;
-//function to instantiate the Leaflet map
+var map2;
+
 function createMap(){
     //create the map
-    map = L.map('map', {
+    map2 = L.map('map2', {
         center: [45,-120],
         zoom: 6  
     });
@@ -13,7 +11,7 @@ function createMap(){
     L.tileLayer('https://api.mapbox.com/styles/v1/k3nt-d/cloxh3eju009g01r63u685tpl/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiazNudC1kIiwiYSI6ImNsb2l5cWcyazAwYXIycm1vY2R5MXNkZWwifQ.tO2BZUE-ZbahyZLzWq9gXg',
     {
         attribution: '&copy; <a href="https://api.mapbox.com/styles/v1/k3nt-d/cloxh3eju009g01r63u685tpl.html?title=view&access_token=pk.eyJ1IjoiazNudC1kIiwiYSI6ImNsb2l5cWcyazAwYXIycm1vY2R5MXNkZWwifQ.tO2BZUE-ZbahyZLzWq9gXg&zoomwheel=true&fresh=true#11.57/40.7771/-73.9697">Mapbox</a>', maxZoom: 17,
-    }).addTo(map);
+    }).addTo(map2);
 
     //call getData function
     getData();
@@ -44,7 +42,7 @@ function classify(primSource) {
       };
     } else if (primSource == "biomass") {
       options = {
-        fillColor: "954535",
+        fillColor: "ffff00",
       };
     } else if (primSource == "wind") {
       options = {
@@ -96,7 +94,7 @@ function createSymbols(data){
             // Pass minValue to pointToLayer function
             return pointToLayer(feature, latlng);
         }
-    }).addTo(map);
+    }).addTo(map2);
 };
 
 function getData(){
