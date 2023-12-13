@@ -22,7 +22,7 @@ function createMap(){
         attribution: '&copy; <a href="https://api.mapbox.com/styles/v1/k3nt-d/cloxh3eju009g01r63u685tpl.html?title=view&access_token=pk.eyJ1IjoiazNudC1kIiwiYSI6ImNsb2l5cWcyazAwYXIycm1vY2R5MXNkZWwifQ.tO2BZUE-ZbahyZLzWq9gXg&zoomwheel=true&fresh=true#11.57/40.7771/-73.9697">Mapbox</a>', maxZoom: 17,
     }).addTo(map);
 
-   countiesLayer = L.geoJson('/data/Counties_Line_6578384382787054859.geojson').addTo(map);
+   countiesLayer = L.geoJson('/data/orcntypoly_FeaturesToJSON.geojson').addTo(map);
     //call getData function
     getData();
 };
@@ -123,7 +123,7 @@ function getData() {
             createSymbols(json);
         });
 
-    fetch("/data/Counties_Polygon_-6180148356286324910.geojson")
+    fetch("/data/orcntypoly_FeaturesToJSON.geojson")
         .then(function (response) {
             return response.json();
         })

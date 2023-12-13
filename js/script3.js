@@ -1,6 +1,6 @@
 var map2;
 
-function createMap(){
+function createMap2(){
     //create the map
     map2 = L.map('map2', {
         center: [45,-120],
@@ -15,6 +15,10 @@ function createMap(){
 
     //call getData function
     getData();
+    
+    map2.invalidateSize();
+
+    console.log("Map2 created!");
 };
 
 function color(data) {
@@ -93,16 +97,20 @@ function createSymbols(data) {
         return feature.properties.Total_MW > 20;
     });
 
-    // Create a Leaflet GeoJSON layer with filtered data and add it to the map
-    L.geoJson({
+    // Create a Leaflet GeoJSON layer with filtered data
+    var geoJsonLayer = L.geoJson({
         type: "FeatureCollection",
         features: filteredData
     }, {
         pointToLayer: function (feature, latlng) {
             return pointToLayer(feature, latlng);
         }
-    }).addTo(map2);
+    });
+
+    // Add the GeoJSON layer to map2
+    geoJsonLayer.addTo(map2);
 }
+
 
 
 function getData(){
@@ -116,6 +124,6 @@ function getData(){
         });
 };
 
-document.addEventListener('DOMContentLoaded',createMap)
+document.addEventListener('DOMContentLoaded',createMap2);
 
 //codes from Chapter 4 Lesson 2 in Workbook

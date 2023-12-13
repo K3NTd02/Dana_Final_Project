@@ -17,6 +17,10 @@ function createMap(){
 
     //call getData function
     getData();
+    // Invalidate map size to ensure proper rendering
+    map.invalidateSize();
+
+    console.log("Map created!");
 };
 
 function color(data) {
@@ -32,31 +36,31 @@ function color(data) {
 }
   
 function classify(primSource) {
-    var options;
-  
-    if (primSource == "solar") {
-      options = {
-        fillColor: "#ff7800",
-      };
-    } else if (primSource == "hydroelectric") {
-      options = {
-        fillColor: "#0504aa",
-      };
-    } else if (primSource == "biomass") {
-      options = {
-        fillColor: "254117",
-      };
-    } else if (primSource == "wind") {
-      options = {
-        fillColor: "#6cbb3c",
-      };
-    } else {
-      options = {
-        fillColor: "#ff0000",
-      };
-    }
-  
-    return options;
+  var options;
+
+  if (primSource == "solar") {
+    options = {
+      fillColor: "#ff7800",
+    };
+  } else if (primSource == "hydroelectric") {
+    options = {
+      fillColor: "#00ffff",
+    };
+  } else if (primSource == "biomass") {
+    options = {
+      fillColor: "ffd800",
+    };
+  } else if (primSource == "wind") {
+    options = {
+      fillColor: "#6cbb3c",
+    };
+  } else {
+    options = {
+      fillColor: "#ff0000",
+    };
+  }
+
+  return options;
 }
 
 function pointToLayer(feature, latlng){
@@ -101,11 +105,12 @@ function createSymbols(data){
 
 function getData(){
     //load the data
-    fetch("/data/Power_Plants.geojson")
+    fetch("/data/orcntypoly_FeaturesToJSON.geojson")
         .then(function(response){
             return response.json();
         })
         .then(function(json){
+            console.log(json);
             createSymbols(json);
         });
 };
