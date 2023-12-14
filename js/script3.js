@@ -94,7 +94,7 @@ function pointToLayer(feature, latlng){
 function createSymbols(data) {
     // Filter features with Total_MW values over 10
     var filteredData = data.features.filter(function (feature) {
-        return feature.properties.Total_MW > 20;
+        return feature.properties.Total_MW > 50;
     });
 
     // Create a Leaflet GeoJSON layer with filtered data

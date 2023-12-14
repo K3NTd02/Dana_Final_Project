@@ -105,7 +105,7 @@ function createSymbols(data){
 
 function getData(){
     //load the data
-    fetch("/data/orcntypoly_FeaturesToJSON.geojson")
+    fetch("/data/Power_Plants.geojson")
         .then(function(response){
             return response.json();
         })
